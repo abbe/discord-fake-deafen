@@ -14,7 +14,7 @@ WebSocket.prototype.send = function(data) {
         if (old_channel_id === channel_id) {
             console.log("Found mute/deafen");
             data = data.replace('"self_mute":false', 'NiceOneDiscord');
-            console.log("Faked mute/deafen");
+            console.log("Faked mute/deafen - borkgang.com");
         } else {
             old_channel_id = channel_id;
         }
