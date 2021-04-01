@@ -5,7 +5,6 @@ WebSocket.prototype.original = WebSocket.prototype.send;
 WebSocket.prototype.send = function(data) {
     if (Object.prototype.toString.call(data) === "[object ArrayBuffer]") {
         var textData = text.decode(data);
-        console.log(textData);
         var channel_id = textData.substring(
             textData.lastIndexOf('channel_id') + 15, 
             textData.lastIndexOf('channel_id') + 33
@@ -16,7 +15,9 @@ WebSocket.prototype.send = function(data) {
             data = data.replace('"self_mute":false', 'NiceOneDiscord');
             console.log("Faked mute/deafen - borkgang.com");
         } else {
-            old_channel_id = channel_id;
+            if(textData.includes("channel_id")) {
+                old_channel_id = channel_id;
+            }
         }
     }
     WebSocket.prototype.original.apply(this, [data]);
